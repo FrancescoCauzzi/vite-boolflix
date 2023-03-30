@@ -1,4 +1,12 @@
 <script>
+import BflixNavbar from "./components/BflixNavbarFolder/BflixNavbar.vue";
+import BflixFooter from "./components/BflixFooter.vue";
+import BflixMain from "./components/BflixMainFolder/BflixMain.vue";
+
+// axios
+import axios from "axios";
+
+// Store
 import { store } from "./store.js";
 export default {
   data() {
@@ -6,17 +14,24 @@ export default {
       store,
     };
   },
+  components: {
+    BflixNavbar,
+    BflixMain,
+    BflixFooter,
+  },
   methods: {
     async fetchData() {
       const apiKey = "ea39885f75d08d11ec8cebda7fc8b91f";
       const query = encodeURIComponent(this.store.userInput); // replace with your desired movie title
 
       try {
-        const response = await fetch(
+        console.log("Hello");
+        const response = await axios.get(
           `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
         );
-        const data = await response.json();
-        console.log(data);
+
+        this.store.movies = response.data.results;
+        console.log(this.store.movies);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -26,9 +41,9 @@ export default {
 </script>
 
 <template>
-  <div>
-    <button @click="fetchData()">Click</button>
-  </div>
+  <BflixNavbar @search-movie="fetchData"></BflixNavbar>
+  <BflixMain></BflixMain>
+  <BflixFooter></BflixFooter>
 </template>
 
 <style scoped></style>

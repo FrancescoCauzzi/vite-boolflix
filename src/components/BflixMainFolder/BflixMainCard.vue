@@ -1,0 +1,13 @@
+<script>
+import { store } from "../../store.js";
+export default {
+  name: "BflixMainCard",
+  data() {
+    return {
+      store,
+    };
+  },
+};
+</script>
+<template></template>
+<style scoped></style>
