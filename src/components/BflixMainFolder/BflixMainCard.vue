@@ -19,6 +19,9 @@ export default {
     flagThumb() {
       let lang = this.origLang;
       if (lang === "en") lang = "gb";
+      if (lang === "ja") lang = "jp";
+      if (lang === "zh") lang = "cn";
+      if (lang === "ko") lang = "kr";
 
       return lang;
     },
