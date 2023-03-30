@@ -8,17 +8,16 @@ export default {
 </script>
 
 <template>
-  <div class="footer text-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="footer-copyright text-center py-3">
-            &copy; 2021 <a href="https://www.bflix.com">Bflix</a>. All rights
-            reserved.
-          </div>
-        </div>
+  <div class="container-flex bg-dark __footer">
+    <footer
+      class="d-flex flex-wrap justify-content-between align-items-center p-3"
+    >
+      <div class="col-md-4 d-flex align-items-center">
+        <span class="mb-3 mb-md-0 text-white fw-bold"
+          >© 2023 Boolean, classe #88, Francesco Cauzzi</span
+        >
       </div>
-    </div>
+    </footer>
   </div>
 </template>
 

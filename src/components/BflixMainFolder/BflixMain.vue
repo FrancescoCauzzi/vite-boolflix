@@ -20,7 +20,7 @@ export default {
 </template>
 <style>
 .__container-outer {
-  height: 89.5vh;
+  min-height: 87vh;
   background-color: grey;
 }
 </style>
