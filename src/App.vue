@@ -1,12 +1,15 @@
 <script>
+import { store } from "./store.js";
 export default {
   data() {
-    return {};
+    return {
+      store,
+    };
   },
   methods: {
     async fetchData() {
       const apiKey = "ea39885f75d08d11ec8cebda7fc8b91f";
-      const query = "Star Wars"; // replace with your desired movie title
+      const query = encodeURIComponent(this.store.userInput); // replace with your desired movie title
 
       try {
         const response = await fetch(
