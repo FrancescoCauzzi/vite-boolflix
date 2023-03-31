@@ -28,6 +28,10 @@ export default {
 
       return lang;
     },
+    ratingRounded() {
+      let rating = this.rating;
+      return Math.ceil(rating / 2);
+    },
   },
 };
 </script>
@@ -54,7 +58,11 @@ export default {
         <div class="__lang-flag">
           <!-- <span :class="`fi fi-${flagThumb}`"></span> -->
         </div>
-        <h6 class="__card-rate">Rating: {{ rating }}</h6>
+        <div class="__card-rate d-flex gap-1">
+          <span v-for="rate in ratingRounded"
+            ><i class="__star fa-solid fa-star"></i
+          ></span>
+        </div>
       </div>
     </div>
   </div>
@@ -67,5 +75,9 @@ export default {
 
 img {
   margin-top: -3px;
+}
+
+.__star {
+  color: gold;
 }
 </style>

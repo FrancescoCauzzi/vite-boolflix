@@ -6,6 +6,9 @@ import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
+// Font Awesome
+import "@fortawesome/fontawesome-free/css/all.css";
+
 // axios
 // import axios from 'axios';
 
