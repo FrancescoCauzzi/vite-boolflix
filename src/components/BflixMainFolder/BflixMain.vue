@@ -40,6 +40,7 @@ export default {
         :posterImage="item.poster_path"
         :itemOverview="item.overview"
         :country="item.origin_country"
+        :movieId="item.id"
       ></BflixMainCard>
     </div>
   </div>
@@ -49,7 +50,8 @@ export default {
   background-color: grey;
   padding-left: 0;
   padding-right: 0;
-  overflow: auto;
+  overflow-y: scroll;
+
   height: 85vh;
 }
 

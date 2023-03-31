@@ -23,7 +23,7 @@ export default {
     async fetchData() {
       this.store.loading = true;
       if (this.store.userInput.trim()) {
-        const apiKey = "ea39885f75d08d11ec8cebda7fc8b91f";
+        const apiKey = this.store.apiKey;
         const query = encodeURIComponent(this.store.userInput); // replace with your desired movie title
 
         try {

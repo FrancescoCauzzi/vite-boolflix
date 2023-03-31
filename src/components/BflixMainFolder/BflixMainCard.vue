@@ -1,6 +1,8 @@
 <script>
 // Flag-icons
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+// axios
+import axios from "axios";
 import { store } from "../../store.js";
 export default {
   name: "BflixMainCard",
@@ -9,7 +11,29 @@ export default {
       store,
       showDetails: false,
       showImage: true,
+      actors: [],
     };
+  },
+  methods: {
+    async getActors() {
+      let id = String(this.movieId);
+      let apiKey = this.store.apiKey;
+      try {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`
+        );
+        console.log(response);
+        let data = response.data.cast;
+
+        this.actors = data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return;
+      }
+    },
+  },
+  mounted() {
+    this.getActors();
   },
   props: {
     title: String,
@@ -20,6 +44,7 @@ export default {
     posterImage: String,
     itemOverview: String,
     country: Array,
+    movieId: Number,
   },
   computed: {
     flagThumb() {
@@ -45,6 +70,13 @@ export default {
     ratingRounded() {
       let rating = this.rating;
       return Math.ceil(rating / 2);
+    },
+    actorsINeed() {
+      let actorsIneed = [];
+      for (let i = 0; i < 5; i++) {
+        actorsIneed.push(this.actors[i]);
+      }
+      return actorsIneed;
     },
   },
 };
@@ -82,13 +114,21 @@ export default {
             {{ itemOverview }}
           </p>
         </div>
-        <div class="__card-rate">
+        <div class="__card-rate mb-2">
           <div class="__rate-title fw-bold">Rating</div>
           <div class="d-flex gap-1">
             <span v-if="ratingRounded" v-for="rate in ratingRounded"
               ><i class="__star fa-solid fa-star"></i
             ></span>
             <span v-else>No rating available</span>
+          </div>
+        </div>
+        <!-- soluzione trovata in https://stackoverflow.com/questions/67810225/why-does-this-computed-property-return-promise-pending -->
+        <div class="__actors-list">
+          <span v-if="this.actors.length > 0" class="fw-bold">Actors:</span>
+          <span v-else>Data about the cast is not available</span>
+          <div v-for="actor in actorsINeed">
+            {{ this.actors.length > 0 ? actor.name : "" }}
           </div>
         </div>
       </div>
