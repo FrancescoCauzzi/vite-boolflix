@@ -51,35 +51,36 @@ export default {
     @mouseleave="(showImage = true), (showDetails = false)"
   >
     <img
-      v-if="showImage"
-      class="poster-image"
+      v-if="showImage && posterImage"
+      class="__poster-image"
       :src="`https://www.themoviedb.org/t/p/w342${posterImage}`"
       alt=""
       srcset=""
     />
-    <div class="__card-body px-2 py-3" v-if="showDetails">
+    <div class="__card-body p-3" v-if="showDetails || !posterImage">
       <div class="__card-header">
         <h5 class="__card-title">{{ title }}</h5>
         <h6 class="__card-orig-title">Original title: {{ origTitle }}</h6>
         <h6 class="d-flex gap-2">
           {{ mediaType }}
           <span
-            ><img :src="`https://flagcdn.com/20x15/${flagThumb}.png`" alt=""
+            ><img
+              id="flag"
+              :src="`https://flagcdn.com/20x15/${flagThumb}.png`"
+              alt=""
           /></span>
         </h6>
 
-        <div class="__lang-flag">
-          <!-- <span :class="`fi fi-${flagThumb}`"></span> -->
-        </div>
         <div class="__overview">
           <p>Overview: {{ itemOerview }}</p>
         </div>
         <div class="__card-rate">
           <div class="__rate-title fw-bold">Rating</div>
           <div class="d-flex gap-1">
-            <span v-for="rate in ratingRounded"
+            <span v-if="ratingRounded" v-for="rate in ratingRounded"
               ><i class="__star fa-solid fa-star"></i
             ></span>
+            <span v-else>No rating available</span>
           </div>
         </div>
       </div>
@@ -98,10 +99,18 @@ export default {
   position: absolute;
   top: 0%;
   background-color: azure;
+  width: 100%;
+
   min-height: 100%;
 }
 
-img {
+.__poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: conver;
+}
+
+#flag {
   margin-top: -4px;
 }
 
