@@ -16,11 +16,18 @@ export default {
     rating: Number,
     mediaType: String,
     posterImage: String,
+    itemOerview: String,
+    country: Array,
   },
   computed: {
     flagThumb() {
       let lang = this.origLang;
+      console.log(this.country);
       if (lang === "en") lang = "gb";
+
+      if (this.country && this.country[0] === "US") {
+        lang = "us";
+      }
       if (lang === "ja") lang = "jp";
       if (lang === "zh") lang = "cn";
       if (lang === "ko") lang = "kr";
@@ -37,26 +44,28 @@ export default {
 </script>
 <template>
   <div class="__card d-flex flex-column">
+    <img
+      class="poster-image"
+      :src="`https://www.themoviedb.org/t/p/w342${posterImage}`"
+      alt=""
+      srcset=""
+    />
     <div class="__card-body">
-      <img
-        class="poster-image"
-        :src="`https://www.themoviedb.org/t/p/w185${posterImage}`"
-        alt=""
-        srcset=""
-      />
       <div class="__card-header">
         <h5 class="__card-title">{{ title }}</h5>
         <h6 class="__card-orig-title">Original title: {{ origTitle }}</h6>
-        <h6>{{ mediaType }}</h6>
-        <div class="__card-orig-lang d-flex align-items-center gap-2">
-          <span> Original language:</span>
+        <h6>
+          {{ mediaType }}
           <span
             ><img :src="`https://flagcdn.com/20x15/${flagThumb}.png`" alt=""
           /></span>
-        </div>
+        </h6>
 
         <div class="__lang-flag">
           <!-- <span :class="`fi fi-${flagThumb}`"></span> -->
+        </div>
+        <div class="__overview">
+          <p>{{ itemOerview }}</p>
         </div>
         <div class="__card-rate d-flex gap-1">
           <span v-for="rate in ratingRounded"
@@ -69,12 +78,12 @@ export default {
 </template>
 <style scoped>
 .__card {
-  width: calc(100% / 5 * 1 - (20px / 5 * 4));
+  width: calc(100% / 3 * 1 - (20px / 3 * 2));
   min-width: 130px;
 }
 
 img {
-  margin-top: -3px;
+  margin-top: -4px;
 }
 
 .__star {

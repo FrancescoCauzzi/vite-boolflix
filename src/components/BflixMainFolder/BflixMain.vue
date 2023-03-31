@@ -26,6 +26,8 @@ export default {
         :rating="item.vote_average"
         :mediaType="item.media_type === 'tv' ? 'Tv series' : 'Movie'"
         :posterImage="item.poster_path"
+        :itemOerview="item.overview"
+        :country="item.origin_country"
       ></BflixMainCard>
     </div>
   </div>

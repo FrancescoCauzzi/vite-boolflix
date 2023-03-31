@@ -11,6 +11,11 @@ export default {
   },
   components: {},
   methods: {},
+  computed: {
+    isDisabled() {
+      return this.store.userInput === "";
+    },
+  },
 };
 </script>
 
@@ -45,11 +50,13 @@ export default {
             placeholder="Search"
             aria-label="Search"
             v-model="this.store.userInput"
+            @keyup.enter="$emit('searchMovie')"
           />
           <button
             class="btn btn-outline-success"
             type="submit"
             @click="$emit('searchMovie')"
+            :disabled="isDisabled"
           >
             Search
           </button>
