@@ -15,6 +15,7 @@ export default {
     origLang: String,
     rating: Number,
     mediaType: String,
+    posterImage: String,
   },
   computed: {
     flagThumb() {
@@ -33,9 +34,15 @@ export default {
 <template>
   <div class="__card d-flex flex-column">
     <div class="__card-body">
+      <img
+        class="poster-image"
+        :src="`https://www.themoviedb.org/t/p/w185${posterImage}`"
+        alt=""
+        srcset=""
+      />
       <div class="__card-header">
         <h5 class="__card-title">{{ title }}</h5>
-        <h5 class="__card-orig-title">Original title: {{ origTitle }}</h5>
+        <h6 class="__card-orig-title">Original title: {{ origTitle }}</h6>
         <h6>{{ mediaType }}</h6>
         <div class="__card-orig-lang d-flex align-items-center gap-2">
           <span> Original language:</span>
@@ -56,5 +63,9 @@ export default {
 .__card {
   width: calc(100% / 5 * 1 - (20px / 5 * 4));
   min-width: 130px;
+}
+
+img {
+  margin-top: -3px;
 }
 </style>
