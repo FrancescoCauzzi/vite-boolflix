@@ -36,6 +36,9 @@ export default {
       if (lang === "uk") lang = "ua";
       if (lang === "hi") lang = "in";
       if (lang === "he") lang = "il";
+      if (lang === "fa") lang = "ir";
+      if (lang === "ar") lang = "dz";
+      if (lang === "el") lang = "gr";
 
       return lang;
     },
