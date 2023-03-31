@@ -7,6 +7,8 @@ export default {
   data() {
     return {
       store,
+      showDetails: false,
+      showImage: true,
     };
   },
   props: {
@@ -43,18 +45,23 @@ export default {
 };
 </script>
 <template>
-  <div class="__card d-flex flex-column">
+  <div
+    class="__card d-flex flex-column"
+    @mouseover="(showImage = false), (showDetails = true)"
+    @mouseleave="(showImage = true), (showDetails = false)"
+  >
     <img
+      v-if="showImage"
       class="poster-image"
       :src="`https://www.themoviedb.org/t/p/w342${posterImage}`"
       alt=""
       srcset=""
     />
-    <div class="__card-body">
+    <div class="__card-body px-2 py-3" v-if="showDetails">
       <div class="__card-header">
         <h5 class="__card-title">{{ title }}</h5>
         <h6 class="__card-orig-title">Original title: {{ origTitle }}</h6>
-        <h6>
+        <h6 class="d-flex gap-2">
           {{ mediaType }}
           <span
             ><img :src="`https://flagcdn.com/20x15/${flagThumb}.png`" alt=""
@@ -65,12 +72,15 @@ export default {
           <!-- <span :class="`fi fi-${flagThumb}`"></span> -->
         </div>
         <div class="__overview">
-          <p>{{ itemOerview }}</p>
+          <p>Overview: {{ itemOerview }}</p>
         </div>
-        <div class="__card-rate d-flex gap-1">
-          <span v-for="rate in ratingRounded"
-            ><i class="__star fa-solid fa-star"></i
-          ></span>
+        <div class="__card-rate">
+          <div class="__rate-title fw-bold">Rating</div>
+          <div class="d-flex gap-1">
+            <span v-for="rate in ratingRounded"
+              ><i class="__star fa-solid fa-star"></i
+            ></span>
+          </div>
         </div>
       </div>
     </div>
@@ -80,6 +90,15 @@ export default {
 .__card {
   width: calc(100% / 3 * 1 - (20px / 3 * 2));
   min-width: 130px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.__card-body {
+  position: absolute;
+  top: 0%;
+  background-color: azure;
+  min-height: 100%;
 }
 
 img {
