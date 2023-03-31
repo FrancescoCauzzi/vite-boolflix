@@ -14,9 +14,17 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid py-5 __container-outer">
-    <div class="container __cards-container">
+  <div class="container-fluid __container-outer">
+    <img
+      v-if="this.store.movies.length === 0"
+      id="blockbuster"
+      src="/img/blockbuster_nostalgia.webp"
+      alt=""
+      srcset=""
+    />
+    <div class="container __cards-container text-center py-5">
       <!-- voglio mettere un immagine di sfondo che si visualizza quando si accede alla pagina -->
+
       <BflixMainCard
         v-if="!this.store.loading"
         v-for="item in store.movies"
@@ -35,9 +43,18 @@ export default {
   </div>
 </template>
 <style>
-.__container-outer {
-  min-height: 85vh;
+.container-fluid.__container-outer {
   background-color: grey;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: auto;
+  height: 85vh;
+}
+
+#blockbuster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .__cards-container {
