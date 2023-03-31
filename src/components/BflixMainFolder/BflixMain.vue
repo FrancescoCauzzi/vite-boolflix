@@ -18,10 +18,13 @@ export default {
     <div class="container __cards-container">
       <BflixMainCard
         v-for="item in store.movies"
-        :title="item.title"
-        :origTitle="item.original_title"
+        :title="item.media_type === 'movie' ? item.title : item.name"
+        :origTitle="
+          item.media_type === 'movie' ? item.original_title : item.original_name
+        "
         :origLang="item.original_language"
         :rating="item.vote_average"
+        :mediaType="item.media_type === 'tv' ? 'Tv series' : 'Movie'"
       ></BflixMainCard>
     </div>
   </div>

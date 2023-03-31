@@ -28,7 +28,7 @@ export default {
         try {
           console.log("Hello");
           const response = await axios.get(
-            `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
+            `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`
           );
 
           this.store.movies = response.data.results;
