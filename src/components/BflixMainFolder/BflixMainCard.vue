@@ -72,10 +72,7 @@ export default {
       return Math.ceil(rating / 2);
     },
     actorsINeed() {
-      let actorsIneed = [];
-      for (let i = 0; i < 5; i++) {
-        actorsIneed.push(this.actors[i]);
-      }
+      let actorsIneed = this.actors.slice(0, 5);
       return actorsIneed;
     },
   },
