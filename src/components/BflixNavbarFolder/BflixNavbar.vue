@@ -20,9 +20,8 @@ export default {
       <div class="d-flex align-items-center">
         <a class="navbar-brand p-1 d-flex" href="#">
           <img src="/img/logo.png" alt="" />
-          <h1 class="px-3 text-white">BoolFlix</h1>
         </a>
-        <p class="text-white">White Chicks</p>
+        <h1 class="px-0 text-white">BoolFlix</h1>
       </div>
       <button
         class="navbar-toggler"
