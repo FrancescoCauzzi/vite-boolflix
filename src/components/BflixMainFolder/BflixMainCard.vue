@@ -34,6 +34,8 @@ export default {
       if (lang === "zh") lang = "cn";
       if (lang === "ko") lang = "kr";
       if (lang === "uk") lang = "ua";
+      if (lang === "hi") lang = "in";
+      if (lang === "he") lang = "il";
 
       return lang;
     },

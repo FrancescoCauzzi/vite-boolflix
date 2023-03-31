@@ -22,11 +22,13 @@ export default {
       alt=""
       srcset=""
     />
-    <div class="container __cards-container text-center py-5">
+    <div
+      v-if="this.store.movies.length !== 0 && this.store.loading === false"
+      class="container __cards-container py-5"
+    >
       <!-- voglio mettere un immagine di sfondo che si visualizza quando si accede alla pagina -->
 
       <BflixMainCard
-        v-if="!this.store.loading"
         v-for="item in store.movies"
         :title="item.media_type === 'movie' ? item.title : item.name"
         :origTitle="
