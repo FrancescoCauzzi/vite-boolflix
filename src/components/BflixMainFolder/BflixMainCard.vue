@@ -18,7 +18,7 @@ export default {
     rating: Number,
     mediaType: String,
     posterImage: String,
-    itemOerview: String,
+    itemOverview: String,
     country: Array,
   },
   computed: {
@@ -72,7 +72,10 @@ export default {
         </h6>
 
         <div class="__overview">
-          <p>Overview: {{ itemOerview }}</p>
+          <p>
+            <span class="fw-bold">Overview</span> <br />
+            {{ itemOverview }}
+          </p>
         </div>
         <div class="__card-rate">
           <div class="__rate-title fw-bold">Rating</div>
@@ -93,12 +96,15 @@ export default {
   min-width: 130px;
   position: relative;
   overflow-y: auto;
+  border: 2px solid black;
+  box-shadow: 2px 2px black;
 }
 
 .__card-body {
   position: absolute;
   top: 0%;
-  background-color: azure;
+  background-color: rgba(237, 226, 226, 0.529);
+
   width: 100%;
 
   min-height: 100%;

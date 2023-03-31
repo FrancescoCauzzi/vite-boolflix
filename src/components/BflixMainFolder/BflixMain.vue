@@ -16,7 +16,9 @@ export default {
 <template>
   <div class="container-fluid py-5 __container-outer">
     <div class="container __cards-container">
+      <!-- voglio mettere un immagine di sfondo che si visualizza quando si accede alla pagina -->
       <BflixMainCard
+        v-if="!this.store.loading"
         v-for="item in store.movies"
         :title="item.media_type === 'movie' ? item.title : item.name"
         :origTitle="
@@ -26,7 +28,7 @@ export default {
         :rating="item.vote_average"
         :mediaType="item.media_type === 'tv' ? 'Tv series' : 'Movie'"
         :posterImage="item.poster_path"
-        :itemOerview="item.overview"
+        :itemOverview="item.overview"
         :country="item.origin_country"
       ></BflixMainCard>
     </div>
@@ -34,7 +36,7 @@ export default {
 </template>
 <style>
 .__container-outer {
-  min-height: 87vh;
+  min-height: 85vh;
   background-color: grey;
 }
 

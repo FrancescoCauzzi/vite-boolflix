@@ -43,9 +43,14 @@ export default {
         class="collapse navbar-collapse justify-content-end"
         id="navbarSupportedContent"
       >
-        <div class="d-flex">
+        <div class="d-flex gap-2">
+          <div
+            class="__search-title fw-bold d-flex align-items-center text-white"
+          >
+            Search for an item in our movies and series database
+          </div>
           <input
-            class="form-control me-2"
+            class="form-control w-25 me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"

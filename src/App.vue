@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     async fetchData() {
+      this.store.loading = true;
       if (this.store.userInput.trim()) {
         const apiKey = "ea39885f75d08d11ec8cebda7fc8b91f";
         const query = encodeURIComponent(this.store.userInput); // replace with your desired movie title
@@ -33,6 +34,7 @@ export default {
 
           this.store.movies = response.data.results;
           console.log(this.store.movies);
+          this.store.loading = false;
         } catch (error) {
           console.error("Error fetching data:", error);
         }
