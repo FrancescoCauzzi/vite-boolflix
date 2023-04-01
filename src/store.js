@@ -7,6 +7,8 @@ export const store = reactive({
   apiKey: "ea39885f75d08d11ec8cebda7fc8b91f",
   movies: [],
   loading: false,
+  tvGenres: [],
+  movieGenres: [],
 
   userInput: "",
 });

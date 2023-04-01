@@ -19,7 +19,35 @@ export default {
     BflixMain,
     BflixFooter,
   },
+  mounted() {
+    this.getMovieGenres();
+    this.getTvGenres();
+  },
   methods: {
+    async getTvGenres() {
+      let apiKey = this.store.apiKey;
+
+      try {
+        let tvResponse = await axios.get(
+          `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}`
+        );
+        this.store.tvGenres = tvResponse.data.genres;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    async getMovieGenres() {
+      let apiKey = this.store.apiKey;
+
+      try {
+        let movieResponse = await axios.get(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
+        );
+        this.store.movieGenres = movieResponse.data.genres;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
     async fetchData() {
       this.store.loading = true;
       if (this.store.userInput.trim()) {
