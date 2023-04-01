@@ -19,13 +19,20 @@ export default {
       let id = String(this.movieId);
       let apiKey = this.store.apiKey;
       try {
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`
-        );
-        console.log(response);
-        let data = response.data.cast;
-
-        this.actors = data;
+        if (this.mediaType === "movie") {
+          let moviesResponse = await axios.get(
+            `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`
+          );
+          this.actors = moviesResponse.data.cast;
+          //console.log(this.actors);
+        } else if (this.mediaType === "tv") {
+          let tvSeriesResponse = await axios.get(
+            `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`
+          );
+          //console.log(tvSeriesResponse.data.cast);
+          this.actors = tvSeriesResponse.data.cast;
+          //console.log(this.actors);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         return;
@@ -96,7 +103,7 @@ export default {
         <h5 class="__card-title">{{ title }}</h5>
         <h6 class="__card-orig-title">Original title: {{ origTitle }}</h6>
         <h6 class="d-flex gap-2">
-          {{ mediaType }}
+          {{ mediaType === "tv" ? "Tv Series" : "Movie" }}
           <span
             ><img
               id="flag"

@@ -36,7 +36,7 @@ export default {
         "
         :origLang="item.original_language"
         :rating="item.vote_average"
-        :mediaType="item.media_type === 'tv' ? 'Tv series' : 'Movie'"
+        :mediaType="item.media_type"
         :posterImage="item.poster_path"
         :itemOverview="item.overview"
         :country="item.origin_country"
