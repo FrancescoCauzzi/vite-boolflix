@@ -52,6 +52,7 @@ export default {
     itemOverview: String,
     country: Array,
     movieId: Number,
+    genres: Array,
   },
   computed: {
     flagThumb() {
@@ -82,6 +83,28 @@ export default {
       let actorsIneed = this.actors.slice(0, 5);
       return actorsIneed;
     },
+    mediaGenres() {
+      let genresMovie = [];
+      let genresTv = [];
+      if (this.mediaType === "movie") {
+        for (let i = 0; i < this.store.movieGenres.length; i++) {
+          if (this.genres.includes(this.store.movieGenres[i].id)) {
+            genresMovie.push(this.store.movieGenres[i].name);
+          }
+        }
+        console.log(genresMovie);
+        return genresMovie;
+      }
+      if (this.mediaType === "tv") {
+        for (let i = 0; i < this.store.tvGenres.length; i++) {
+          if (this.genres.includes(this.store.tvGenres[i].id)) {
+            genresTv.push(this.store.tvGenres[i].name);
+          }
+        }
+        console.log(genresTv);
+        return genresTv;
+      }
+    },
   },
 };
 </script>
@@ -111,10 +134,20 @@ export default {
               alt=""
           /></span>
         </h6>
+        <div v-if="mediaGenres.length > 0" class="__mediaGenres mb-2">
+          <span class="fw-bold">{{
+            mediaGenres.length > 1 ? "Genres " : "Genre "
+          }}</span>
+          <br />
+          <span v-for="(item, index) in mediaGenres">{{
+            index === mediaGenres.length - 1 ? `${item}.` : `${item}, `
+          }}</span>
+        </div>
 
         <div class="__overview">
           <p>
             <span class="fw-bold">Overview</span> <br />
+
             {{ itemOverview }}
           </p>
         </div>

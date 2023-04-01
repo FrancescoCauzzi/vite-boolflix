@@ -62,6 +62,8 @@ export default {
 
           this.store.movies = response.data.results;
           console.log(this.store.movies);
+          console.log(this.store.tvGenres);
+          console.log(this.store.movieGenres);
           this.store.loading = false;
         } catch (error) {
           console.error("Error fetching data:", error);

@@ -41,6 +41,7 @@ export default {
         :itemOverview="item.overview"
         :country="item.origin_country"
         :movieId="item.id"
+        :genres="item.genre_ids"
       ></BflixMainCard>
     </div>
   </div>
