@@ -57,7 +57,8 @@ export default {
   computed: {
     flagThumb() {
       let lang = this.origLang;
-      console.log(this.country);
+      //console.log(this.country);
+      // qui si possono usare degli switch invece che una serie di if
       if (lang === "en") lang = "gb";
 
       if (this.country && this.country[0] === "US") {
@@ -110,6 +111,7 @@ export default {
 </script>
 <template>
   <div
+    v-if="mediaType === 'movie' || mediaType === 'tv'"
     class="__card d-flex flex-column"
     @mouseover="(showImage = false), (showDetails = true)"
     @mouseleave="(showImage = true), (showDetails = false)"
@@ -129,12 +131,16 @@ export default {
           {{ mediaType === "tv" ? "Tv Series" : "Movie" }}
           <span
             ><img
+              v-if="flagThumb"
               id="flag"
               :src="`https://flagcdn.com/20x15/${flagThumb}.png`"
               alt=""
           /></span>
         </h6>
-        <div v-if="mediaGenres.length > 0" class="__mediaGenres mb-2">
+        <div
+          v-if="mediaGenres && mediaGenres.length > 0"
+          class="__mediaGenres mb-2"
+        >
           <span class="fw-bold">{{
             mediaGenres.length > 1 ? "Genres " : "Genre "
           }}</span>
@@ -148,7 +154,7 @@ export default {
           <p>
             <span class="fw-bold">Overview</span> <br />
 
-            {{ itemOverview }}
+            {{ itemOverview ? itemOverview : "Overview not Available" }}
           </p>
         </div>
         <div class="__card-rate mb-2">
@@ -162,7 +168,9 @@ export default {
         </div>
         <!-- soluzione trovata in https://stackoverflow.com/questions/67810225/why-does-this-computed-property-return-promise-pending -->
         <div class="__actors-list">
-          <span v-if="this.actors.length > 0" class="fw-bold">Actors:</span>
+          <span v-if="this.actors && this.actors.length > 0" class="fw-bold"
+            >Actors</span
+          >
           <span v-else>Data about the cast is not available</span>
           <div v-for="actor in actorsINeed">
             {{ this.actors.length > 0 ? actor.name : "" }}
@@ -180,6 +188,7 @@ export default {
   overflow-y: auto;
   border: 2px solid black;
   box-shadow: 2px 2px black;
+  min-height: 645px;
 }
 
 .__card-body {
@@ -195,7 +204,7 @@ export default {
 .__poster-image {
   width: 100%;
   height: 100%;
-  object-fit: conver;
+  object-fit: cover;
 }
 
 #flag {

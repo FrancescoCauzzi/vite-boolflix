@@ -55,7 +55,6 @@ export default {
         const query = encodeURIComponent(this.store.userInput); // replace with your desired movie title
 
         try {
-          console.log("Hello");
           const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`
           );
