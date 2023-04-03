@@ -110,6 +110,7 @@ export default {
 };
 </script>
 <template>
+  <!-- genero la carta solo se il media type �� "movie" o "tv" -->
   <div
     v-if="mediaType === 'movie' || mediaType === 'tv'"
     class="__card d-flex flex-column"
