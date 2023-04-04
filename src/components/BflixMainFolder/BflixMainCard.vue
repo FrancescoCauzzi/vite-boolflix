@@ -192,20 +192,21 @@ export default {
 </template>
 <style scoped>
 .__card {
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
   width: calc(100% / 3 * 1 - (20px / 3 * 2));
   min-width: 300px;
   position: relative;
   overflow-y: auto;
   border: 2px solid black;
   box-shadow: 2px 2px black;
-  min-height: 645px;
+  height: 450px;
 }
 
 .__card-body {
   position: absolute;
   top: 0%;
-  background-color: rgba(237, 226, 226, 0.529);
+  color: white;
+  /* background-color: rgba(237, 226, 226, 0.529); */
 
   width: 100%;
 
