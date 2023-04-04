@@ -25,6 +25,8 @@ export default {
   },
   methods: {
     async getTvGenres() {
+      this.store.loading = true;
+
       let apiKey = this.store.apiKey;
 
       try {
@@ -32,11 +34,14 @@ export default {
           `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}`
         );
         this.store.tvGenres = tvResponse.data.genres;
+        this.store.loading = false;
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     },
     async getMovieGenres() {
+      this.store.loading = true;
+
       let apiKey = this.store.apiKey;
 
       try {
@@ -44,6 +49,7 @@ export default {
           `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
         );
         this.store.movieGenres = movieResponse.data.genres;
+        this.store.loading = false;
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -52,7 +58,7 @@ export default {
       this.store.loading = true;
       if (this.store.userInput.trim()) {
         const apiKey = this.store.apiKey;
-        const query = encodeURIComponent(this.store.userInput); // replace with your desired movie title
+        const query = encodeURIComponent(this.store.userInput);
 
         try {
           const response = await axios.get(

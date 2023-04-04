@@ -93,7 +93,7 @@ export default {
             genresMovie.push(this.store.movieGenres[i].name);
           }
         }
-        console.log(genresMovie);
+        //console.log(genresMovie);
         return genresMovie;
       }
       if (this.mediaType === "tv") {
@@ -102,7 +102,7 @@ export default {
             genresTv.push(this.store.tvGenres[i].name);
           }
         }
-        console.log(genresTv);
+        //console.log(genresTv);
         return genresTv;
       }
     },
@@ -161,21 +161,30 @@ export default {
         <div class="__card-rate mb-2">
           <div class="__rate-title fw-bold">Rating</div>
           <div class="d-flex gap-1">
-            <span v-if="ratingRounded" v-for="rate in ratingRounded"
-              ><i class="__star fa-solid fa-star"></i
-            ></span>
-            <span v-else>No rating available</span>
+            <span
+              ><i
+                v-for="rate in ratingRounded"
+                class="__star fa-solid fa-star"
+              ></i
+              ><i
+                v-for="rate in 5 - ratingRounded"
+                class="__star fa-regular fa-star"
+              ></i>
+            </span>
+            <!-- <span v-else>No rating available</span> -->
           </div>
         </div>
         <!-- soluzione trovata in https://stackoverflow.com/questions/67810225/why-does-this-computed-property-return-promise-pending -->
         <div class="__actors-list">
-          <span v-if="this.actors && this.actors.length > 0" class="fw-bold"
-            >Actors</span
+          <span class="fw-bold">Cast</span>
+
+          <div
+            v-if="this.actors && this.actors.length > 0"
+            v-for="actor in actorsINeed"
           >
-          <span v-else>Data about the cast is not available</span>
-          <div v-for="actor in actorsINeed">
-            {{ this.actors.length > 0 ? actor.name : "" }}
+            {{ actor.name }}
           </div>
+          <div v-else>Data about the cast is not available</div>
         </div>
       </div>
     </div>
@@ -183,8 +192,9 @@ export default {
 </template>
 <style scoped>
 .__card {
+  flex-shrink: 0;
   width: calc(100% / 3 * 1 - (20px / 3 * 2));
-  min-width: 130px;
+  min-width: 300px;
   position: relative;
   overflow-y: auto;
   border: 2px solid black;
