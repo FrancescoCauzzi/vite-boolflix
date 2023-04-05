@@ -199,7 +199,7 @@ export default {
   overflow-y: auto;
   border: 2px solid black;
   box-shadow: 2px 2px black;
-  height: 450px;
+  min-height: 450px;
 }
 
 .__card-body {
