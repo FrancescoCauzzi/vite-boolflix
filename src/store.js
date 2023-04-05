@@ -8,7 +8,7 @@ export const store = reactive({
   loading: false,
   tvGenres: [],
   movieGenres: [],
-  selectedGenre: "",
+  selectedGenre: 999999,
 
   userInput: "",
 });
