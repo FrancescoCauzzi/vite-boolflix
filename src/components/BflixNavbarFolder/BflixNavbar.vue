@@ -15,6 +15,14 @@ export default {
     isDisabled() {
       return this.store.userInput === "";
     },
+    allGenres() {
+      let allGenres = [...this.store.tvGenres, ...this.store.movieGenres];
+      let allGenresSingle = allGenres.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      });
+      let genres = allGenresSingle.map((value, index, self) => value.name);
+      return ["All", ...genres.sort()];
+    },
   },
 };
 </script>
@@ -40,7 +48,7 @@ export default {
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="collapse navbar-collapse justify-content-end"
+        class="collapse navbar-collapse justify-content-end __collapse-navbar"
         id="navbarSupportedContent"
       >
         <div class="d-flex gap-2">
@@ -49,6 +57,20 @@ export default {
           >
             Search for an item in our movies and series database
           </div>
+          <label for="selectExample" class="text-white fw-bold"
+            >Select a genre</label
+          >
+          <select
+            class="form-select __my-form-select px-3 w-25"
+            aria-label="Default select example"
+            id="selectExample"
+            v-model="this.store.selectedGenre"
+          >
+            <option v-for="item in allGenres" value="">
+              {{ item }}
+            </option>
+          </select>
+
           <input
             class="form-control w-25 me-2"
             type="search"
