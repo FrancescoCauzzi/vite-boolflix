@@ -71,7 +71,10 @@ export default {
             this.store.movies = response.data.results;
           } else {
             this.store.movies = response.data.results.filter((item) => {
-              return item.genre_ids.includes(this.store.selectedGenre);
+              return (
+                item.genre_ids &&
+                item.genre_ids.includes(this.store.selectedGenre)
+              );
             });
           }
           console.log(this.store.movies);
