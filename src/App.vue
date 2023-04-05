@@ -64,8 +64,16 @@ export default {
           const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`
           );
-
-          this.store.movies = response.data.results;
+          // devo collegare il store.selectedGenre al genre_ids
+          console.log(this.store.selectedGenre);
+          console.log(response.data.results);
+          if (this.store.selectedGenre === 999999) {
+            this.store.movies = response.data.results;
+          } else {
+            this.store.movies = response.data.results.filter((item) => {
+              return item.genre_ids.includes(this.store.selectedGenre);
+            });
+          }
           console.log(this.store.movies);
           console.log(this.store.tvGenres);
           console.log(this.store.movieGenres);

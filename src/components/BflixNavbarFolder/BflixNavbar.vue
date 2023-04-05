@@ -17,11 +17,24 @@ export default {
     },
     allGenres() {
       let allGenres = [...this.store.tvGenres, ...this.store.movieGenres];
-      let allGenresSingle = allGenres.filter((value, index, self) => {
-        return self.indexOf(value) === index;
+      let allGenresSingle = allGenres.filter((current, index, self) => {
+        return index === self.findIndex((item) => item.name === current.name);
       });
-      let genres = allGenresSingle.map((value, index, self) => value.name);
-      return ["All", ...genres.sort()];
+      console.log(allGenres);
+      return [
+        { id: 999999, name: "All" },
+        ...allGenresSingle.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        }),
+      ];
+      // let genres = allGenresSingle.map((value, index, self) => value.name);
+      // return ["All", ...genres.sort()];
     },
   },
 };
@@ -66,8 +79,8 @@ export default {
             id="selectExample"
             v-model="this.store.selectedGenre"
           >
-            <option v-for="item in allGenres" value="">
-              {{ item }}
+            <option v-for="item in allGenres" :value="item.id">
+              {{ item.name }}
             </option>
           </select>
 
