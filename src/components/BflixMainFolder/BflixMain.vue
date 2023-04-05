@@ -90,7 +90,7 @@ export default {
   background-color: rgb(16, 16, 16);
   padding-left: 0;
   padding-right: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   height: 85vh;
 }

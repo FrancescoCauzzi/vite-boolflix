@@ -12,8 +12,3 @@ export const store = reactive({
 
   userInput: "",
 });
-
-let array = [
-  { id: 3, name: "Amber" },
-  { id: 4, name: "John" },
-];
